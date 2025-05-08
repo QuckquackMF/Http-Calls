@@ -12,11 +12,13 @@ import { JsonPipe } from '@angular/common';
   templateUrl: './foo.component.html',
   styleUrl: './foo.component.css'
 })
-export class FooComponent {
+export class FooComponent implements OnInit {
 data!: Object; //Il ‘!’ serve a creare variabili non inizializzate
 loading: boolean=false;
 o! :Observable<Object>;
 oPost! : Observable<Object>;
+fooData! : Foo[];
+oFoo! : Observable<Foo[]>;
 constructor(public http: HttpClient) {}
 makeRequest(): void {
   console.log("here");
@@ -49,4 +51,14 @@ getPostResponse = (data : Object) => {
   this.data = data;
   this.loading = false;
 }
+
+makeTypedRequest() : void
+ {
+   this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
+   this.oFoo.subscribe(data => {this.fooData = data;});
+ }
+
+ ngOnInit() {
+}
+
 }
