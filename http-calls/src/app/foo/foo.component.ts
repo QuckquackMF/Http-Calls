@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-foo',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './foo.component.html',
   styleUrl: './foo.component.css'
 })
